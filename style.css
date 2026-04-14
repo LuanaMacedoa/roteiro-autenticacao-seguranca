@@ -6,28 +6,28 @@
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  /* areia → verde suave */
+  padding: 40px 15px;
+
   background: linear-gradient(180deg, #f5e6c8 0%, #e8d3a9 50%, #8aa38d 100%);
 }
 
 .container {
   width: 100%;
-  max-width: 350px;
+  max-width: 380px;
 }
 
-/* CARD */
+
 .card {
   background: #fffaf0;
-  padding: 30px;
+  padding: 30px 25px;
   border-radius: 14px;
   box-shadow: 0 15px 35px rgba(0,0,0,0.25);
   text-align: center;
-  backdrop-filter: blur(3px);
 }
 
 .card h2 {
@@ -35,28 +35,42 @@ body {
   color: #355f4a;
 }
 
-/* INPUTS */
-input {
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+input,
+select {
   width: 100%;
   padding: 10px;
-  margin: 8px 0;
   border-radius: 8px;
   border: 1px solid #d6c2a3;
   background: #fff;
   outline: none;
-  transition: 0.3s;
+  transition: 0.2s;
+  font-size: 14px;
 }
 
-input:focus {
+
+select {
+  appearance: none;
+  cursor: pointer;
+}
+
+input:focus,
+select:focus {
   border-color: #6b8f71;
   box-shadow: 0 0 5px rgba(107, 143, 113, 0.4);
 }
 
-/* BOTÃO */
+
 button {
   width: 100%;
   padding: 10px;
-  margin-top: 10px;
+  margin-top: 5px;
   border: none;
   border-radius: 8px;
   background: #6b8f71;
@@ -70,7 +84,11 @@ button:hover {
   background: #4f6f57;
 }
 
-/* LINKS */
+
+p {
+  margin-top: 10px;
+}
+
 a {
   color: #4f6f57;
   text-decoration: none;
@@ -81,7 +99,7 @@ a:hover {
   text-decoration: underline;
 }
 
-/* UTIL */
+
 .hidden {
   display: none;
 }
