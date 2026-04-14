@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema Seguro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- LOGIN -->
+    <div id="login" class="card">
+      <h2>Entrar</h2>
+      <form>
+        <input type="email" placeholder="E-mail" required>
+        <input type="password" placeholder="Senha" required>
+        <button type="submit">Login</button>
+      </form>
+      <p>Não tem conta? <a href="#" onclick="mostrarCadastro()">Cadastrar</a></p>
+    </div>
+
+    <!-- CADASTRO -->
+    <div id="cadastro" class="card hidden">
+      <h2>Criar Conta</h2>
+      <form>
+        <input type="email" placeholder="E-mail" required>
+        <input type="password" placeholder="Senha" required>
+        <input type="password" placeholder="Confirmar Senha" required>
+        <button type="submit">Cadastrar</button>
+      </form>
+      <p><a href="#" onclick="mostrarLogin()">Voltar</a></p>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
