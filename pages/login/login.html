@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link rel="stylesheet" href="./login.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="logo">Sistema Seguro</div>
+      <nav class="top-links">
+        <a href="../../index.html">Início</a>
+        <a href="../login/login.html">Login</a>
+        <a href="../cadastro/cadastro.html">Cadastro</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <div class="container">
+      <div class="card">
+        <h2>Entrar</h2>
+
+        <form id="loginForm">
+          <input id="email" type="email" placeholder="E-mail" required />
+          <input id="senha" type="password" placeholder="Senha" required />
+          <button type="submit">Login</button>
+        </form>
+
+        <p id="msg" class="msg"></p>
+        <p>Não tem conta? <a href="../cadastro/cadastro.html">Cadastrar</a></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <section class="footer-col">
+        <h3>Sobre Nós</h3>
+        <p>Projeto acadêmico de autenticação e segurança com foco em validação, hash de senha e CRUD no navegador.</p>
+      </section>
+
+      <section class="footer-col">
+        <h3>Links</h3>
+        <ul>
+          <li><a href="../login/login.html">Acessar login</a></li>
+          <li><a href="../cadastro/cadastro.html">Criar usuário</a></li>
+          <li><a href="../sistema/sistema.html">Sistema</a></li>
+        </ul>
+      </section>
+
+      <section class="footer-col">
+        <h3>Contato</h3>
+        <p>E-mail: equipe.projeto@ifpb.edu.br</p>
+        <p>IFPB - Segurança da Informação</p>
+      </section>
+    </div>
+
+    <div class="footer-bottom">2026 - Sistema Seguro</div>
+  </footer>
+
+  <script src="./login.js"></script>
+</body>
+</html>
