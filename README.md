@@ -6,7 +6,6 @@
 * Vinicius Ares
 * Maria Laura
 * Gustavo Almeida
-* Luis Eduardo
 
 ## Descrição
 
@@ -38,6 +37,7 @@ Sistema completo de autenticação e gerenciamento de dados de refugiados, desen
 * **Validação de Campos**: Whitelists para selects (religião, ideologia)
 
 ### Design & UX
+
 * **Layout Responsivo**: Funciona em desktop, tablet e mobile
 * **Tema Consistente**: Cores harmoniosas e tipografia legível
 * **Animações Suaves**: Transições fadeIn/slideUp para melhor experiência
