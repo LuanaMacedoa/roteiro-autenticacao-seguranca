@@ -6,7 +6,7 @@
 * Vinicius Ares
 * Maria Laura
 * Gustavo Almeida
-* Luis Eduardo
+
 
 ## Descrição
 
