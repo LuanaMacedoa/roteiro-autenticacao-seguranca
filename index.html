@@ -1,93 +1,488 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
-  <title>Sistema Seguro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Refugiados</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+  <main class="app-shell">
+    <div id="login" class="card auth-card container">
+      <div class="brand">
+        <div class="brand-icon">
+          <i data-lucide="shield-check" aria-hidden="true"></i>
+        </div>
+        <div>
+          <h1>Sistema de Refugiados</h1>
+          <p>Controle institucional seguro</p>
+        </div>
+      </div>
 
-  <div class="container">
+      <div class="card-header">
+        <span class="eyebrow">Acesso</span>
+        <h2>Entrar na plataforma</h2>
+        <p>Use seu e-mail institucional para acessar o sistema.</p>
+      </div>
 
+      <div id="msg-login" class="mensagem" role="alert" aria-live="polite"></div>
 
-    <div id="login" class="card">
-      <h2>Entrar</h2>
-      <form onsubmit="loginTeste(event)">
-        <input type="email" placeholder="E-mail" required>
-        <input type="password" placeholder="Senha" required>
-        <button type="submit">Login</button>
+      <form id="formLogin" onsubmit="loginTeste(event)" novalidate>
+        <div class="campo">
+          <label for="loginEmail">E-mail institucional</label>
+          <div class="input-wrapper">
+            <i data-lucide="mail" aria-hidden="true"></i>
+            <input type="email" id="loginEmail" placeholder="usuario@ifpb.edu.br" autocomplete="email" required>
+          </div>
+          <small>Apenas e-mails @ifpb.edu.br ou @academico.ifpb.edu.br</small>
+        </div>
+
+        <div class="campo">
+          <label for="loginSenha">Senha</label>
+          <div class="input-wrapper">
+            <i data-lucide="lock-keyhole" aria-hidden="true"></i>
+            <input type="password" id="loginSenha" placeholder="Digite sua senha" autocomplete="current-password"
+              required>
+          </div>
+        </div>
+
+        <button type="submit" id="btnEntrar" class="btn-primary">
+          <i data-lucide="log-in" aria-hidden="true"></i>
+          Entrar
+        </button>
       </form>
-      <p>Não tem conta? <a href="#" onclick="mostrarCadastro()">Cadastrar</a></p>
+
+      <p class="form-footer">
+        Não tem conta?
+        <button type="button" class="link-button" onclick="mostrarCadastro()">Cadastrar-se</button>
+      </p>
     </div>
 
+    <div id="cadastro" class="card auth-card container hidden">
+      <div class="brand">
+        <div class="brand-icon">
+          <i data-lucide="user-plus" aria-hidden="true"></i>
+        </div>
+        <div>
+          <h1>Sistema de Refugiados</h1>
+          <p>Cadastro institucional</p>
+        </div>
+      </div>
 
-    <div id="cadastro" class="card hidden">
-      <h2>Criar Conta</h2>
-      <form onsubmit="cadastrarUsuario(event)">
-        <input type="email" placeholder="E-mail" required>
-        
-        <input type="password" placeholder="Senha" required>
-        <input type="password" placeholder="Confirmar Senha" required>
-        <button type="submit">Cadastrar</button>
+      <div class="card-header">
+        <span class="eyebrow">Nova conta</span>
+        <h2>Criar acesso</h2>
+        <p>Preencha os dados abaixo para registrar uma nova conta.</p>
+      </div>
+
+      <div id="msg-cadastro" class="mensagem" role="alert" aria-live="polite"></div>
+
+      <form id="formCadastro" onsubmit="cadastrarUsuario(event)" novalidate>
+        <div class="campo">
+          <label for="cadEmail">E-mail institucional</label>
+          <div class="input-wrapper">
+            <i data-lucide="mail" aria-hidden="true"></i>
+            <input type="email" id="cadEmail" placeholder="usuario@ifpb.edu.br" autocomplete="email" required>
+          </div>
+          <small>Apenas e-mails @ifpb.edu.br ou @academico.ifpb.edu.br</small>
+        </div>
+
+        <div class="campo">
+          <label for="cadSenha">Senha</label>
+          <div class="input-wrapper">
+            <i data-lucide="key-round" aria-hidden="true"></i>
+            <input type="password" id="cadSenha" placeholder="Mín. 8 caracteres, maiúscula, número e símbolo"
+              autocomplete="new-password" required>
+          </div>
+          <small>Mínimo 8 caracteres, uma maiúscula, um número e um símbolo.</small>
+        </div>
+
+        <div class="campo">
+          <label for="cadConfirma">Confirmar senha</label>
+          <div class="input-wrapper">
+            <i data-lucide="badge-check" aria-hidden="true"></i>
+            <input type="password" id="cadConfirma" placeholder="Repita a senha" autocomplete="new-password" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary">
+          <i data-lucide="circle-check" aria-hidden="true"></i>
+          Criar conta
+        </button>
       </form>
-      <p><a href="#" onclick="mostrarLogin()">Voltar</a></p>
+
+      <p class="form-footer">
+        <button type="button" class="link-button" onclick="mostrarLogin()">
+          <i data-lucide="arrow-left" aria-hidden="true"></i>
+          Voltar para o login
+        </button>
+      </p>
     </div>
 
+    <div id="verificacao" class="card auth-card container hidden">
+      <div class="brand">
+        <div class="brand-icon">
+          <i data-lucide="scan-face" aria-hidden="true"></i>
+        </div>
+        <div>
+          <h1>Sistema de Refugiados</h1>
+          <p>Verificação em duas etapas</p>
+        </div>
+      </div>
+
+      <div class="card-header">
+        <span class="eyebrow">Segurança</span>
+        <h2>Confirme sua identidade</h2>
+        <p>Digite o código enviado para seu e-mail institucional.</p>
+      </div>
+
+      <div id="msg-otp" class="mensagem" role="alert" aria-live="polite"></div>
+
+      <div class="info-otp">
+        <div class="info-icon">
+          <i data-lucide="mail-check" aria-hidden="true"></i>
+        </div>
+        <p id="textoOtp">Um código de 6 dígitos foi enviado para o seu e-mail.</p>
+      </div>
+
+      <form id="formOtp" onsubmit="verificarOTP(event)" novalidate>
+        <div class="campo">
+          <label for="inputOtp">Código de verificação</label>
+          <input type="text" id="inputOtp" placeholder="000000" maxlength="6" inputmode="numeric" pattern="[0-9]{6}"
+            autocomplete="one-time-code" required>
+        </div>
+
+        <div id="timer-otp" class="timer"></div>
+
+        <button type="submit" id="btnVerificar" class="btn-primary">
+          <i data-lucide="shield-check" aria-hidden="true"></i>
+          Verificar código
+        </button>
+      </form>
+
+      <div class="reenvio">
+        <button id="btnReenviar" class="btn-link" onclick="reenviarOTP()" disabled>
+          Reenviar código
+        </button>
+        <span id="cooldownMsg" class="cooldown-msg"></span>
+      </div>
+
+      <p class="form-footer">
+        <button type="button" class="link-button" onclick="cancelar2FA()">
+          <i data-lucide="arrow-left" aria-hidden="true"></i>
+          Voltar para o login
+        </button>
+      </p>
+    </div>
+
+    <div id="sistema" class="card dashboard-card container hidden">
+      <div class="cabecalho-sistema">
+        <div>
+          <span class="eyebrow">Painel principal</span>
+          <h2>Cadastro de Refugiados</h2>
+          <p>Gerencie registros de forma simples, organizada e segura.</p>
+        </div>
+
+        <div class="cabecalho-acoes">
+          <button class="btn-conta" onclick="abrirConta()">
+            <i data-lucide="user-cog" aria-hidden="true"></i>
+            Minha conta
+          </button>
+          <button class="btn-secundario" onclick="logout()">
+            <i data-lucide="log-out" aria-hidden="true"></i>
+            Sair
+          </button>
+        </div>
+      </div>
+
+      <section class="resumo-cards" aria-label="Resumo do sistema">
+        <article>
+          <div class="resumo-icon">
+            <i data-lucide="users" aria-hidden="true"></i>
+          </div>
+          <div>
+            <strong id="totalRefugiados">0</strong>
+            <span>registros cadastrados</span>
+          </div>
+        </article>
+
+        <article>
+          <div class="resumo-icon">
+            <i data-lucide="shield" aria-hidden="true"></i>
+          </div>
+          <div>
+            <strong>2FA ativo</strong>
+            <span>verificação por e-mail</span>
+          </div>
+        </article>
+
+        <article>
+          <div class="resumo-icon">
+            <i data-lucide="user-check" aria-hidden="true"></i>
+          </div>
+          <div>
+            <strong id="usuarioAtualResumo">Usuário</strong>
+            <span>sessão atual</span>
+          </div>
+        </article>
+      </section>
+
+      <div id="msg-sistema" class="mensagem" role="alert" aria-live="polite"></div>
+
+      <form id="formRefugiado" onsubmit="salvarRefugiado(event)" novalidate>
+        <input type="hidden" id="indexEdicao" value="">
+
+        <div class="section-title">
+          <i data-lucide="clipboard-list" aria-hidden="true"></i>
+          <div>
+            <h3>Dados pessoais</h3>
+            <p>Campos com asterisco são obrigatórios.</p>
+          </div>
+        </div>
+
+        <div class="grade-2">
+          <div class="campo">
+            <label for="nomeRef">Nome completo *</label>
+            <input type="text" id="nomeRef" placeholder="Nome do refugiado" required>
+          </div>
+
+          <div class="campo">
+            <label for="idadeRef">Idade *</label>
+            <input type="number" id="idadeRef" placeholder="Ex: 35" min="0" max="120" required>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="enderecoRef">Endereço *</label>
+          <input type="text" id="enderecoRef" placeholder="Rua, número, bairro, cidade" required>
+        </div>
+
+        <div class="grade-2">
+          <div class="campo">
+            <label for="religiaoRef">Religião *</label>
+            <select id="religiaoRef" required>
+              <option value="">Selecione...</option>
+              <option>Muçulmano</option>
+              <option>Judeu</option>
+              <option>Católico</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="ideologiaRef">Ideologia política *</label>
+            <select id="ideologiaRef" required>
+              <option value="">Selecione...</option>
+              <option>Esquerda</option>
+              <option>Direita</option>
+              <option>Centro</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="section-title">
+          <i data-lucide="briefcase-business" aria-hidden="true"></i>
+          <div>
+            <h3>Informações complementares</h3>
+            <p>Esses dados ajudam a organizar melhor o atendimento.</p>
+          </div>
+        </div>
+
+        <div class="grade-2">
+          <div class="campo">
+            <label for="profissaoRef">Profissão</label>
+            <input type="text" id="profissaoRef" placeholder="Ex: Engenheiro">
+          </div>
+
+          <div class="campo">
+            <label for="filhosRef">Número de filhos</label>
+            <input type="number" id="filhosRef" placeholder="Ex: 2" min="0">
+          </div>
+        </div>
+
+        <div class="grade-2">
+          <div class="campo">
+            <label for="rendaRef">Renda familiar antes da guerra (R$)</label>
+            <input type="number" id="rendaRef" placeholder="Ex: 3500.00" min="0" step="0.01">
+          </div>
+
+          <div class="campo">
+            <label for="escolaridadeRef">Grau de formação escolar</label>
+            <select id="escolaridadeRef">
+              <option value="">Selecione...</option>
+              <option>Ensino Fundamental Incompleto</option>
+              <option>Ensino Fundamental Completo</option>
+              <option>Ensino Médio Incompleto</option>
+              <option>Ensino Médio Completo</option>
+              <option>Ensino Superior Incompleto</option>
+              <option>Ensino Superior Completo</option>
+              <option>Pós-graduação</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="acoes-form">
+          <button type="submit" id="btnSalvar" class="btn-primary">
+            <i data-lucide="save" aria-hidden="true"></i>
+            Salvar refugiado
+          </button>
+
+          <button type="button" id="btnCancelar" class="btn-secundario hidden" onclick="cancelarEdicao()">
+            <i data-lucide="x-circle" aria-hidden="true"></i>
+            Cancelar edição
+          </button>
+        </div>
+      </form>
+
+      <div class="lista-card">
+        <div>
+          <h3>Registros salvos</h3>
+          <p>Consulte, edite ou remova refugiados cadastrados.</p>
+        </div>
+
+        <button onclick="abrirLista()" class="btn-lista">
+          <i data-lucide="list" aria-hidden="true"></i>
+          Ver refugiados cadastrados
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <div id="modalLista" class="modal" role="dialog" aria-modal="true" aria-labelledby="tituloModal">
+    <div class="modal-content modal-lista">
+      <div class="modal-header">
+        <div>
+          <span class="eyebrow">Consulta</span>
+          <h3 id="tituloModal">Refugiados cadastrados</h3>
+        </div>
+
+        <button onclick="fecharLista()" class="modal-fechar" aria-label="Fechar listagem">
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div class="campo busca-modal">
+        <label for="buscaRefugiado">Buscar registro</label>
+        <div class="input-wrapper">
+          <i data-lucide="search" aria-hidden="true"></i>
+          <input type="search" id="buscaRefugiado" placeholder="Buscar por nome, endereço, religião ou profissão"
+            oninput="renderizarLista()">
+        </div>
+      </div>
+
+      <div id="listaContainer">
+        <ul id="listaRefugiados"></ul>
+      </div>
+
+      <button onclick="fecharLista()" class="btn-secundario">
+        <i data-lucide="check" aria-hidden="true"></i>
+        Concluir
+      </button>
+    </div>
   </div>
 
-    <div id="sistema" class="card hidden">
-    <h2>Cadastro de Refugiados</h2>
+  <div id="modalConta" class="modal" role="dialog" aria-modal="true" aria-labelledby="tituloConta">
+    <div class="modal-content modal-conta">
+      <div class="modal-header">
+        <div>
+          <span class="eyebrow">Configurações</span>
+          <h3 id="tituloConta">Minha conta</h3>
+        </div>
 
-    
-    <form id="formRefugiado">
+        <button onclick="fecharConta()" class="modal-fechar" aria-label="Fechar minha conta">
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+      </div>
 
-        <input type="text" id="nomeRef" placeholder="Nome" required>
-        <input type="text" id="enderecoRef" placeholder="Endereço" required>
-        <input type="number" id="idadeRef" placeholder="Idade" min="0" required>
+      <p class="conta-email-atual">
+        Logado como:
+        <strong id="exibirEmailAtual"></strong>
+      </p>
 
-        <select id="religiaoRef" required>
-        <option value="">Religião</option>
-        <option>Muçulmano</option>
-        <option>Judeu</option>
-        <option>Católico</option>
-        </select>
+      <div class="abas">
+        <button class="aba ativa" id="abaEmailBtn" onclick="trocarAba('email')">
+          <i data-lucide="mail" aria-hidden="true"></i>
+          Alterar e-mail
+        </button>
 
-        <select id="ideologiaRef" required>
-        <option value="">Ideologia Política</option>
-        <option>Esquerda</option>
-        <option>Direita</option>
-        <option>Centro</option>
-        </select>
+        <button class="aba" id="abaSenhaBtn" onclick="trocarAba('senha')">
+          <i data-lucide="lock" aria-hidden="true"></i>
+          Alterar senha
+        </button>
+      </div>
 
-        <input type="text" id="profissaoRef" placeholder="Profissão">
-        <input type="number" id="filhosRef" placeholder="Número de Filhos" min="0">
-        <input type="number" id="rendaRef" placeholder="Renda Familiar antes da guerra" min="0" step="0.01">
-        <input type="text" id="escolaridadeRef" placeholder="Maior grau de Formação Escolar.">
+      <div id="painelEmail" class="painel-aba">
+        <div id="msg-conta-email" class="mensagem" role="alert" aria-live="polite"></div>
 
-        <button type="submit">Salvar</button>
-    </form>
+        <form id="formAlterarEmail" onsubmit="alterarEmail(event)" novalidate>
+          <div class="campo">
+            <label for="novoEmail">Novo e-mail institucional</label>
+            <div class="input-wrapper">
+              <i data-lucide="mail-plus" aria-hidden="true"></i>
+              <input type="email" id="novoEmail" placeholder="novo@ifpb.edu.br" required>
+            </div>
+            <small>Apenas @ifpb.edu.br ou @academico.ifpb.edu.br</small>
+          </div>
 
-    
-    
-    <button onclick="abrirLista()">Ver todos os refugiados cadastrados</button>
+          <div class="campo">
+            <label for="senhaConfirmEmail">Senha atual</label>
+            <div class="input-wrapper">
+              <i data-lucide="lock-keyhole" aria-hidden="true"></i>
+              <input type="password" id="senhaConfirmEmail" placeholder="Digite sua senha atual" required>
+            </div>
+          </div>
 
+          <button type="submit" class="btn-primary">
+            <i data-lucide="save" aria-hidden="true"></i>
+            Salvar novo e-mail
+          </button>
+        </form>
+      </div>
 
-    <button onclick="logout()">Sair</button>
+      <div id="painelSenha" class="painel-aba hidden">
+        <div id="msg-conta-senha" class="mensagem" role="alert" aria-live="polite"></div>
+
+        <form id="formAlterarSenha" onsubmit="alterarSenha(event)" novalidate>
+          <div class="campo">
+            <label for="senhaAtual">Senha atual</label>
+            <div class="input-wrapper">
+              <i data-lucide="lock-keyhole" aria-hidden="true"></i>
+              <input type="password" id="senhaAtual" placeholder="Digite sua senha atual" required>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="novaSenha">Nova senha</label>
+            <div class="input-wrapper">
+              <i data-lucide="key-round" aria-hidden="true"></i>
+              <input type="password" id="novaSenha" placeholder="Mín. 8 caracteres, maiúscula, número e símbolo"
+                required>
+            </div>
+            <small>Mínimo 8 caracteres, uma maiúscula, um número e um símbolo.</small>
+          </div>
+
+          <div class="campo">
+            <label for="confirmarNovaSenha">Confirmar nova senha</label>
+            <div class="input-wrapper">
+              <i data-lucide="badge-check" aria-hidden="true"></i>
+              <input type="password" id="confirmarNovaSenha" placeholder="Repita a nova senha" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary">
+            <i data-lucide="save" aria-hidden="true"></i>
+            Salvar nova senha
+          </button>
+        </form>
+      </div>
     </div>
-
-    <div id="modalLista" class="modal hidden">
-  <div class="modal-content">
-    <h3>Refugiados Cadastrados</h3>
-
-    <div id="listaContainer">
-      <ul id="listaRefugiados"></ul>
-    </div>
-
-    <button onclick="fecharLista()">Fechar</button>
   </div>
-</div>
 
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script src="script.js"></script>
 </body>
-</html>
 
+</html>
